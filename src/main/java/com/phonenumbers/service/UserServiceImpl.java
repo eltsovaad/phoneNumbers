@@ -29,6 +29,7 @@ public class UserServiceImpl implements UserService {
         String retValue="Not found";
         for (User i : USER_LIST) {
             if (i.getCompany().equals(ID)) {
+                retValue="Can't find user with this name in a company";
                 if(i.getName().equals(name))
                 retValue=i.getPhone();
             }
