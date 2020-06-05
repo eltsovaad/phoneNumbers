@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
             if (i.getCompany().equals(ID)) {
                 retValue="Can't find user with this name in a company";
                 if(i.getName().equals(name))
-                retValue=i.getPhone();
+                return i.getPhone();
             }
         }
         return retValue;
