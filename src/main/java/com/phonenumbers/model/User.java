@@ -1,5 +1,5 @@
 package com.phonenumbers.model;
-
+//POJO User class. Represents user in a company
 public class User {
     private Integer company;
     private String name;

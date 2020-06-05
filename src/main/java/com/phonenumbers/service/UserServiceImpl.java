@@ -12,19 +12,25 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void create(){
+        //Creates users in a list
         User user1=new User("Ivan",1,"123456789");
         User user2=new User("Denis",2,"987654321");
+        User user3=new User("Ann",1,"32145678");
+        User user4=new User("Jane",2,"789654321");
         USER_LIST.add(user1);
         USER_LIST.add(user2);
+        USER_LIST.add(user3);
+        USER_LIST.add(user4);
     }
 
     @Override
-    public User read(int ID,String name) {
-        User retValue=null;
+    public String read(int ID,String name) {
+        //returns phone number as a string if it can be found in a list
+        String retValue="Not found";
         for (User i : USER_LIST) {
             if (i.getCompany().equals(ID)) {
                 if(i.getName().equals(name))
-                retValue=i;
+                retValue=i.getPhone();
             }
         }
         return retValue;

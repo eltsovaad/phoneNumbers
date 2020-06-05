@@ -8,9 +8,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class MvcConfig implements WebMvcConfigurer {
 
     public void addViewControllers(ViewControllerRegistry registry) {
+        //setting home page
         registry.addViewController("/").setViewName("home");
-        //registry.addViewController("/company/{id}/users*").setViewName("numbers");
-        //registry.addViewController("/login").setViewName("login");
+        //setting page instead of "White Label error page"
+        registry.addViewController("/error").setViewName("error");
     }
 
 }

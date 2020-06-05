@@ -20,21 +20,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/","/login").permitAll()
-                .antMatchers("/company/1/*").hasRole("1")
-                .antMatchers("/company/2/*").hasRole("2")
+                .antMatchers("/").permitAll()//home page is open for everyone
+                .antMatchers("/company/1/*").hasRole("1")//Only user with role "1" can see /company/1/* pages
+                .antMatchers("/company/2/*").hasRole("2")//Only user with role "2" can see /company/2/* pages
                 .and()
                 .formLogin()
                 .loginPage("/")
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll();
+                .permitAll();//Home page is a login page and available for everyone
     }
 
     @Bean
     @Override
     public UserDetailsService userDetailsService() {
+        /*This code can only be used for demonstration
+        * */
         UserDetails user1 =
                 User.withDefaultPasswordEncoder()
                         .username("Ivan")

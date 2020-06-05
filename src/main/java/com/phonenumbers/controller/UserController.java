@@ -8,6 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/*
+Rest controller to catch get queries
+* */
+
 @RestController
 public class UserController {
     private final UserService userService;
@@ -16,16 +20,17 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-
+    //return a string with a phone number of a user.  For more details see UserServiceImpl class
     @GetMapping(value = "/company/{id}/users")
-    public ResponseEntity<User> read(@PathVariable(name = "id") int ID,@RequestParam String name) {
-        final User user = userService.read(ID,name);
+    public ResponseEntity<String> read(@PathVariable(name = "id") int ID,@RequestParam String name) {
+        final String phone = userService.read(ID,name);
 
-        return user != null
-                ? new ResponseEntity<>(user, HttpStatus.OK)
+        return !phone.equals("Not found")
+                ? new ResponseEntity<>(phone, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    //creates Users in a List. For more details see UserServiceImpl class
     @GetMapping(value = "/create")
     public ResponseEntity<?> create() {
         userService.create();
